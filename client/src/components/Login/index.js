@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#3E51B5',
   },
   img:{
     width: 50,
@@ -55,7 +55,7 @@ const Login = (props) => {
     {status === "errorField" && <MyFlash variant="error" msg={[errors]}/>}
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
-            <LockRoundedIcon/>
+            <LockRoundedIcon />
           </Avatar>
         <Typography component="h1" variant="h5" color="primary">
           Sign in
@@ -81,7 +81,7 @@ const Login = (props) => {
             />
             </Grid>
             <Grid item xs={12}>
-              <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
+              <Button  onClick={handleSubmit}  fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
             </Grid>
           </Grid>
         </form>   

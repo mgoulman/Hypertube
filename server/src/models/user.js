@@ -38,6 +38,8 @@ module.exports = {
         })
     },
     update: function (type, value){
+        console.log(type)
+        console.log(value)
         return new Promise ((resolve, reject) => {
             conn.query(UPDATE[type], value,(err,res) => {
                 if(err)

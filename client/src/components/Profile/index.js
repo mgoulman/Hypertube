@@ -26,48 +26,50 @@ const useStyles = makeStyles(theme => ({
     },
     submit: {
         margin: theme.spacing(2, 0, 2),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: '#3E51B5'
     },
     avatar: {
         width: 50,
         height: 50,
     },
+    input: {
+        display: 'none',
+      },
+    button: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    },
     img: {
         display: 'block',
         marginLeft: 'auto',
         marginRight: 'auto',
-        width: '250px',
-        height: '250px',
+        width: '200px',
+        height: '200px',
+    },
+    spacing:{
+        margin: theme.spacing(4, 0, 4),
     }
 }));
 
 const Profile = (props) => {
     const { handleSubmit, fileChangedHandler, user } = props;
     const classes = useStyles();
-    const renderPicture = ({input,meta:{ touched, error }}) =>{
-        return (
-          <div>
-            <input accept="image/*"  id="icon-button-file" type="file"  onChange={event => fileChangedHandler(event,input)}/>
-            
-              {error && touched && <Message negative content={error} />}
-            </div>
-        )
-      }
+
     return (
-        <div>
-            <form>
-                <div style={{ width: "250px", height: "250px", }} >
-                    {/* <IconButton color="primary" aria-label="upload picture" component="span">
-                            <AddIcon style={{ fontSize: 70 }} />
-                        </IconButton> */}
-                    <Avatar className={classes.img}>
-                        <img style={{ width: "250px", height: "250px", }} src={`http://localhost:5000/images/${user.image}`} />
-                    </Avatar>
-                </div>
-                <Field
-                    name="picture"
-                    component={renderPicture}
-                />
+        <div >
+            <div className={classes.img} style={{ width: "250px", height: "250px", }} >
+                <Avatar className={classes.img}>
+                    <img style={{ width: "250px", height: "250px", }} src={`http://localhost:5000/images/${user.image}`} />
+                </Avatar>
+                    <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={event => fileChangedHandler(event)} />
+                    <label htmlFor="icon-button-file">
+                        <Button  color="primary" aria-label="upload picture" component="span">
+                            Modifier
+                        </Button>
+                    </label>
+            </div>
+            <form className={classes.spacing}>
                 <Grid container justify="center" spacing={2}>
                     <Grid item xs={5}>
                         <FormLabel component="legend">Firstname</FormLabel>

@@ -5,6 +5,7 @@ const v1 = require('./routes/v1');
 const v2 = require('./routes/v2');
 const cors = require('cors')
 const register = require('./controllers/User/register')
+const upload = require('./controllers/User/upload')
 const app = express();
 
 app.use(express.static('public'));
@@ -21,6 +22,7 @@ app.use(cors());
 // ------------- Routes  ------------- //
 app.use(v2);
 app.use(register)
+app.use(upload)
 app.use(v1);
 
 // ------------- ERR  ------------- //

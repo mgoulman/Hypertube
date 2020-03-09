@@ -1,8 +1,9 @@
-
+import React, {useEffect, useState} from 'react'
 import Register from '../../components/Register';
 import {InscriptionAction} from '../../actions/registerAction';
 import {connect} from "react-redux";
 import {reduxForm } from 'redux-form';
+
 
 const validate = (values) => {
     const errors = {};
@@ -51,7 +52,7 @@ const mapStateToProps = (state) => (
     "form" : state.form,
     "user" : state.user,
     "status" : state.register.registerStatus,
-    "err": state.register.error
+    "err": state.register.error,
 });
 const mapDispatchToProps = {
     "registerAction": InscriptionAction,
@@ -74,6 +75,11 @@ const mergeProps = (stateProps, dispatchProps, otherProps)=> ({
     }),
     "fileChangedHandler" : (event,input) => {
         let files  = event.target.files[0];
+    //     let reader = new FileReader();
+    //     reader.onloadend = () => {
+    //         setimgUrl(reader.result)
+    //   }
+        
         // const formData = new FormData();
         // formData.append('files',files);
         input.onChange(files);

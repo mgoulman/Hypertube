@@ -25,11 +25,11 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: '#3E51B5',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#3E51B5'
   },
 }));
 
@@ -73,7 +73,7 @@ const ResetPassword = (props) => {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
+                    <Button  className={classes.submit} onClick={handleSubmit}  fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
                 </Grid>
             </Grid>
         </form>    

@@ -1,4 +1,4 @@
-import React  from 'react';
+import React ,{useState} from 'react';
 import { Field} from 'redux-form';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +15,7 @@ import MyFlash from '../commun/flash';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 import { Message} from "semantic-ui-react";
+
 
 const useStyles = makeStyles(theme => ({
   
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#3E51B5',
   },
   input: {
     display: 'none',
@@ -41,16 +42,34 @@ const useStyles = makeStyles(theme => ({
   add : {
     display: 'none',
   },
+  image: {
+    width: '200px',
+    height: '200px',
+  },
 }));
 
+
 const Register = (props) => {
-  const {handleSubmit, status, err,fileChangedHandler} = props;
+  const [imgUrl, setimgUrl] = useState(null);
+  const {handleSubmit, status, err, fileChangedHandler} = props;
   const classes = useStyles();
   const renderPicture = ({input,meta:{ touched, error }}) =>{
     return (
       <div>
-        <input accept="image/*"  id="icon-button-file" type="file"  onChange={event => fileChangedHandler(event,input)}/>
-        
+        <input accept="image/*"  style={{display: 'none'}} id="icon-button-file" type="file"  onChange={event => {
+          let file = event.target.files[0];
+          let reader = new FileReader();
+          reader.onloadend = () => {
+            setimgUrl(reader.result)
+            }
+          reader.readAsDataURL(file)
+          fileChangedHandler(event,input)}}/>
+        {imgUrl && <img style={{ width: "250px", height: "250px", }} src={imgUrl} alt="image"/>}
+        <label htmlFor="icon-button-file">
+          <Button color="primary" aria-label="upload picture" component="span">
+            Add Picture
+          </Button>
+        </label>
           {error && touched && <Message negative content={error} />}
         </div>
     )
@@ -132,7 +151,7 @@ const Register = (props) => {
             </Grid>
             <Grid item xs={12}>
              
-              <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
+              <Button  onClick={handleSubmit}  fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
             </Grid>
           </Grid>
         </form>  

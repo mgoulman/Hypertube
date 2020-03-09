@@ -8,7 +8,7 @@ const RadioGroup = (props) => {
     return (
       <div>
         {options.map(o => <label key={o.value}>
-          <Radio {...input}  checked={o.value === input.value} value={o.value} />
+          <Radio  {...input}  checked={o.value === input.value} value={o.value} />
           {o.title}</label>)}<br/>
         {hasError && <span style={{'fontSize':'12px','color':'#f44336'}}>{meta.error}</span>}
       </div>

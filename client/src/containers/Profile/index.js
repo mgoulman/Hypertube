@@ -2,19 +2,9 @@ import React from 'react'
 import { connect } from "react-redux";
 import { reduxForm } from 'redux-form';
 import Profile from '../../components/Profile/';
-import { editInfo } from '../../actions/profileAction';
+import { editInfo ,sendImage} from '../../actions/profileAction';
 
-let profileContainer = (props) => {
-  
 
-    return (
-        <Profile
-            handleSubmit={props.handleSubmit}
-            fileChangedHandler={props.fileChangedHandler}
-            user={props.user}
-        />
-    )
-}
 const validate = (values) => {
     const errors = {};
     const requiredFields = [
@@ -59,33 +49,30 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
     "editInfo": editInfo,
+    "sendImage" :sendImage
 };
 const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
     ...dispatchProps,
     ...otherProps,
+    
+    
     "handleSubmit": otherProps.handleSubmit((values) => {
         dispatchProps.editInfo(values);
         delete values.password;
         delete values.confirmPassword;
     }),
-    "fileChangedHandler" : (event,input) => {
-        
-        
-        
+    "fileChangedHandler" : (event) => {
         let files  = event.target.files[0];
-        console.log(event.target.files[0]);
-        
-        // const formData = new FormData();
-        // formData.append('files',files);
-        input.onChange(files);
+        const formData = new FormData();
+        formData.append('files',files);
+        formData.append('user_id',stateProps.user.id);
+        dispatchProps.sendImage(formData);
         event.target.value = null;
-        
-        
     } 
 });
 
-profileContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(profileContainer);
+let  profileContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(Profile);
 
 profileContainer = reduxForm({
     'form': 'profile',

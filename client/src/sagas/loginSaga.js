@@ -24,7 +24,7 @@ const login =
         const  user = response.data.user;
         yield put(loginUserSuccess());
         yield put(updateUserSuccess(user));
-        yield put(push("/profile"));
+        yield put(push("/"));
       }
       else
       {
