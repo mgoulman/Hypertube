@@ -1,8 +1,11 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyparser = require('body-parser');
-const v1 = require('./routes/v1');
-const v2 = require('./routes/v2');
+const OffSession = require('./routes/OffSession');
+const OnSession = require('./routes/OnSession');
+const authRoutes = require('./routes/auth-routes');
+const session = require('express-session');
+const passport = require("passport");
 const cors = require('cors')
 const register = require('./controllers/User/register')
 const upload = require('./controllers/User/upload')
@@ -18,12 +21,20 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
 
 app.use(cors());
-
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: 'bla bla bla' 
+  }));
 // ------------- Routes  ------------- //
-app.use(v2);
+app.use(OffSession);
 app.use(register)
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(authRoutes);
 app.use(upload)
-app.use(v1);
+app.use(OnSession);
+
 
 // ------------- ERR  ------------- //
 

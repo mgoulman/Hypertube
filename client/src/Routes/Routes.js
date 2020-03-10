@@ -8,7 +8,8 @@ import ForgotPasswordContainer from '../containers/sendEmail';
 import EmailConfirmCont from '../containers/emailConfirmation';
 import ResetPasswordContainer from '../containers/resetPassword';
 import HomeContainer from '../containers/Home';
-import EmailConfirmation from '../components/emailConfirmation';
+import omniAuth from '../containers/Login/omniAuth';
+
 
 const Routes = (props) => {
     const {user} = props;
@@ -20,6 +21,7 @@ const Routes = (props) => {
                 <Route exact path="/forgotPassword"  component={user === null ? ForgotPasswordContainer : HomeContainer}/>
                 <Route exact path="/register"  component={user === null ? RegisterContainer : HomeContainer} />
                 <Route exact path="/login"  component={user === null ? loginContainer : HomeContainer}/>
+                <Route path="/omniAuth/:token" component={omniAuth}/>
                 <Route exact path="/"  component={user !== null ? HomeContainer : loginContainer}/>
                 <Route path="" component={NotFoundPage}/>
             </Switch>

@@ -7,8 +7,8 @@ const UPDATE = queries.UPDATE;
 const DELETE = queries.DELETE;
 const tools = require('../tools')
 module.exports = {
-    Register :function  (lastname, firstname, username, email, password,picture) {
-        conn.query(INSERT.AddUser, [lastname, firstname, username, email, password,picture],(err,res) => {
+    Register :function  (lastname, firstname, username, email, password,picture,omni_id) {
+        conn.query(INSERT.AddUser, [lastname, firstname, username, email, password,picture,omni_id],(err,res) => {
             if(err)
             {
                 throw err;

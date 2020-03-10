@@ -15,8 +15,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import Divider from '@material-ui/core/Divider';
 import { MDBIcon } from "mdbreact";
 import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
-
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const useStyles = makeStyles(theme => ({
   
@@ -47,6 +46,22 @@ const useStyles = makeStyles(theme => ({
 const Login = (props) => {
   const {handleSubmit, status, errors, registredStatus} = props;
   const classes = useStyles();
+  const handleAuth1 = async () => {
+    window.open("http://localhost:5000/auth/facebook",'_parent');
+  }
+  const handleAuth2 = async () => {
+    window.open("http://localhost:5000/auth/github",'_parent');
+  }
+  const handleAuth3 = async () => {
+    window.open("http://localhost:5000/auth/linkedin",'_parent');
+  }
+  const handleAuth4 = async () => {
+    window.open("http://localhost:5000/auth/google",'_parent');
+  }
+  const handleAuth5 = async () => {
+    window.open("http://localhost:5000/auth/42",'_parent');
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -97,12 +112,12 @@ const Login = (props) => {
               </Link>
             </Grid>
           </Grid>
-            <div>
-              <Button><FacebookIcon style={{width: '50', height: '50'}}/></Button>
-              <Button><GitHubIcon style={{width: '50', height: '50'}}/></Button>
-              <Button><TwitterIcon style={{width: '50', height: '50'}}/></Button>
-              <Button ><img className={classes.img} src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/google-512.png'/></Button>
-              <Button ><img className={classes.img} src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/42_Logo.svg/1200px-42_Logo.svg.png'/></Button>
+          <div>
+              <Button onClick={handleAuth1} ><FacebookIcon style={{width: '50', height: '50'}}/></Button>
+              <Button onClick={handleAuth2}><GitHubIcon style={{width: '50', height: '50'}}/></Button>
+              <Button onClick={handleAuth3} ><LinkedInIcon style={{width: '50', height: '50'}}/></Button>
+              <Button onClick={handleAuth4}><img className={classes.img} src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/google-512.png'/></Button>
+              <Button onClick={handleAuth5}><img className={classes.img} src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/42_Logo.svg/1200px-42_Logo.svg.png'/></Button>
               <MDBIcon fab icon="google" />
             </div>
       </div>

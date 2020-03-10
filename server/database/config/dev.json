@@ -3,7 +3,7 @@
     "host": "localhost",
     "user": "root",
     "password": "5Comrzyh@@@",
-    "database": "HyperTube",
+    "database": "Hypertube",
     "driver": "mysql",
     "multipleStatements": true
     },"sql-file": true
